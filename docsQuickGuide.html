@@ -215,7 +215,7 @@
 
 <h3>Menubar</h3>
 
-<p>The menubar contains menus to acces all functions and tools. The tools specially for cardiovascular modeling/simulation pipeline are listed on the top of Menu &ldquo;Tools&rdquo;. To change tool settings, go to &ldquo;Windows -&gt; Preferences&hellip;&rdquo;. To switch between the preset GUI layouts (Perspectives), go to &ldquo;Windows -&gt; Open Perspective&rdquo;.</p>
+<p>The menubar contains menus to acces all functions and tools. The tools specially for cardiovascular modeling/simulation pipeline are listed on the top of Menu &ldquo;Tools&rdquo;.</p>
 
 <figure>
   <img class="svImg svImgMd"  src="documentation/quickguide/imgs/menus.png"> 
@@ -249,12 +249,27 @@ Switch between the preset GUI layouts (Perspectives): Menu -&gt; Windows -&gt; O
 <pre class="highlight plaintext"><code>Toggle on/off the checkbox next to the corresponding data node in Data Manager
 </code></pre>
 
-<p>When you right click the data node, a menu pops up. It gives you many ways to deall with the data.</p>
+<p>When you right click the data node, a menu pops up. It gives you many functions to deal with data nodes. Some functions are only available to data nodes in a certain type.</p>
 
 <figure>
   <img class="svImg svImgSm"  src="documentation/quickguide/imgs/datamanagermenu.png"> 
   <figcaption class="svCaption" ></figcaption>
 </figure>
+
+<p>Those functions include:</p>
+
+<p><strong>Remove:</strong> remove the data node from Data Manager <br>
+<strong>Global Reinit:</strong> Reset 2D/3D views of Display using the maximum Cartesian space of all the data nodes in Data Manager <br>
+<strong>Save&hellip;:</strong> export the selected data node to a file <br>
+<strong>Reinit:</strong>  Reset 2D/3D views of Display using the Cartesian space of the selected data node in Data Manager <br>
+<strong>Show only selected nodes:</strong>  Show the selected data nodes in Display <br>
+<strong>Toggle visibility:</strong>  show ( or hide) the selected data nodes in Display if they are hidden (or visible) <br>
+<strong>Details:</strong> show more information about the selected data node in a popup dialog, such as dimensions, spacing, etc. <br>
+<strong>Rename:</strong> Rename the selected data node<br>
+<strong>Copy:</strong> copy the selected data node <br>
+<strong>Paste:</strong> duplicate the copied data node in a folder in Data Manager <br>
+<strong>Opacity:</strong> change the opacity of the selected data node <br>
+<strong>Color:</strong> click the color button to change the color of the selected data node <br></p>
 </section>
 <section id="display" class="group"><h2>Display</h2>
 
@@ -392,6 +407,25 @@ Copy into Project? Choose Yes or No
 </code></pre>
 
 <p>Then the image is added under the data node &ldquo;Images&rdquo;. At the same, the image is shown in Display.</p>
+
+<p>If you add/remove data nodes, or change data of a data node inside a SV project, you need to save those changes to the underlying files.</p>
+
+<p><strong>To save SV projects:</strong></p>
+<pre class="highlight plaintext"><code>Method 1: Toolbar -&gt; Save SV Projects
+Method 2: Menu -&gt; File -&gt; Save Sv Projects
+</code></pre>
+
+<p>You can close a project with exiting SimVascular. Make sure you save the project before closing it. After closing a project, it&rsquo;s removed from Data Manager.</p>
+
+<p><strong>To close a SV project:</strong></p>
+<pre class="highlight plaintext"><code>Right click the data node of a SV project in Data Manager
+Click "Close SV Project" in the popup menu
+</code></pre>
+
+<p><strong>Undo/Redo is implemented for data changes.</strong> To restore the data to the previous state, apply Undo/Redo.</p>
+<pre class="highlight plaintext"><code>Undo: Ctrl+Z
+Redo: Ctrl+Y
+</code></pre>
 </section>
 
 <section id="modeling" class="group"><h2>Geometric Modeling</h2>
@@ -412,7 +446,7 @@ Path Name: aorta
 Subdivision Type: choose "Image Spacing Based"
 </code></pre>
 
-<p>A new path &ldquo;aorta&rdquo; is created under the data node &ldquo;Paths&rdquo; in Data Manager. Double click the data node &ldquo;aorta&quot;and the tool &quot;SV Path Planning&rdquo; shows up. The new path is empty ans has no points so far. To add a contro point:</p>
+<p>A new path &ldquo;aorta&rdquo; is created under the data node &ldquo;Paths&rdquo; in Data Manager. Double click the data node &ldquo;aorta&rdquo; and the tool &ldquo;SV Path Planning&rdquo; shows up. The new path is empty and has no points so far. To add a contro point:</p>
 <pre class="highlight plaintext"><code>Image Navigator: Axial slider: 475
 Place the curson into the Axial 2D View in display
 Right press and move to zoom in
@@ -420,7 +454,7 @@ Method 1: Click at the center of the vessel; Ctrl+A or click the button "Add Sma
 Method 2(interactive): Move the cursor to the center of the vessle; Shift+Left Click
 </code></pre>
 
-<p>A control point is added for the path and should appear under the Control Point List. In a 2D view, the point is shown as a blue or red point, depending on if the point is selected. To interactively move the point:</p>
+<p>A control point is added for the path and should appear under the Control Point List. In Display, the point is shown as a blue or red point, depending on if the point is selected. To interactively move the point:</p>
 <pre class="highlight plaintext"><code>Move the cursor to the control point, it becomes red(selected) if not selected yet
 Left press on the point and move 
 </code></pre>
@@ -449,13 +483,8 @@ Set "Cross gap size" to 0
 </figure>
 
 <p><font color="red"><strong>Delete a control point</strong> </font> in the path</p>
-<pre class="highlight plaintext"><code>Method 1: select the one you want to remove in the Control Point List
+<pre class="highlight plaintext"><code>Method 1: select the one you want to remove in the Control Point List and click the button "Delete"
 Method 2(interactive): Move the cursor to the point you want to remove and Right Click
-</code></pre>
-
-<p><font color="red"><strong>Undo/Redo:</strong> </font> To restore the data to the previous state, apply Undo/Redo.</p>
-<pre class="highlight plaintext"><code>Undo: Ctrl+Z
-Redo: Ctrl+Y
 </code></pre>
 
 <p>Build your path down as far as possible (you should be able to get to around Axial slider position 10 before things get harder to see. </p>
@@ -750,7 +779,7 @@ Step Construction : 2 # standard two iterations, enough for constant  problems.
 </code></pre>
 
 <figure>
-  <img class="svImg svImgMd"  src="documentation/quickguide/imgs/solverparameters.png"> 
+  <img class="svImg svImgSm"  src="documentation/quickguide/imgs/solverparameters.png"> 
   <figcaption class="svCaption" ></figcaption>
 </figure>
 
@@ -761,7 +790,7 @@ Step Construction : 2 # standard two iterations, enough for constant  problems.
 <p>There are two ways to run simulation. One is to export all files and run simulation at other computers or clusters. The other way is to create data files and run simulation in the job</p>
 
 <figure>
-  <img class="svImg svImgMd"  src="documentation/quickguide/imgs/runjob.png"> 
+  <img class="svImg svImgSm"  src="documentation/quickguide/imgs/runjob.png"> 
   <figcaption class="svCaption" ></figcaption>
 </figure>
 
@@ -802,7 +831,7 @@ Select a directory for exporting
 </code></pre>
 
 <figure>
-  <img class="svImg svImgMd"  src="documentation/quickguide/imgs/exportresults.png"> 
+  <img class="svImg svImgSm"  src="documentation/quickguide/imgs/exportresults.png"> 
   <figcaption class="svCaption" ></figcaption>
 </figure>
 
@@ -858,7 +887,7 @@ Representation: Volume
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid text-center">
           <ul class="nav navbar-nav">
-            <li><a>Copyright &copy; SV Development Team - 2014</a></li>                
+            <li><a>Copyright &copy; SimVascular Development Team - 2017</a></li>                
           </ul>
         </div>
         <!-- /.container -->

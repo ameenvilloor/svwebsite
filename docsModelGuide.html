@@ -802,7 +802,14 @@ Provide values in the suggested format.
 </section>
 <section id="modelingCopyingPastingContours" class="subgroup"><h3>Copying and Pasting Contours</h3>
 
-<p>Another option for creating contours is to copy and paste a contour from another location. This allows you to extrude that shape and is useful, for instance, at the point where one vessel joins up with another vessel. You can copy and paste any kind of contour you have created.</p>
+<p>Another option for creating contours is to copy and paste a contour from another location. This allows you to extrude that shape and is useful, for instance, at the point where one vessel joins up with another vessel. </p>
+
+<figure>
+  <img class="svImg svImgMd"  src="documentation/modeling/imgs/segmentation/copypastecontours.jpg"> 
+  <figcaption class="svCaption" ></figcaption>
+</figure>
+
+<p>You can copy and paste any kind of contour you have created.</p>
 <pre class="highlight plaintext"><code>Select a contour in Contour List
 Click the button "Copy" to copy the selectd contour
 Move the slider "Reslice" to the position that you want to paste to
@@ -1227,9 +1234,9 @@ Click "OK"
 
 <p>To change face names, types, etc., refer to In <a href="#modelingPolyDataFaces">Face Operations for PolyData Model</a></p>
 
-<p><font color="red"><strong>HELPFUL HINT:</strong> </font> The surface may look not very smooth. It&rsquo;s possibly not caused by the analytic model itself, but by the visualization. <strong>It&rsquo;s required for you to make sure the model surface look right to for you.</strong> To improve it:</p>
+<p><font color="red"><strong>HELPFUL HINT:</strong> </font> The surface may look not very smooth. There is a difference between true lofting artifacts and visualization artifacts. Is this a lofting artifact? The answer is no. The crease you see results from the resolution of the rendering. This can easily be fixed by changing the maximum facet size.  <strong>It&rsquo;s required for you to make sure the model surface look right to for you.</strong> To improve it:</p>
 <pre class="highlight plaintext"><code>Click the button "Change Facet Size.."
-Provide a smaller value for Max Edge Size
+Provide a smaller value for Max Edge Size, like 0.1 or 0.2 for this case
 Click "OK"
 </code></pre>
 

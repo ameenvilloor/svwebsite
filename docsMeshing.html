@@ -268,7 +268,7 @@ Click the button "Run Mesher"
 Click "Yes" to continue 
 </code></pre>
 
-<p>It may take a while fo meshing, which depends on the size of model and the estimated global max edge size. When your mesh has completed, the mesh shows in the 3D-view window of Display. To see the mesh easier, hide the model temporarily.</p>
+<p>It may take a while fo meshing, which depends on the size of model and the estimated global max edge size. When your mesh has completed, the mesh shows in the 3D-view window of Display and a dialog pops up to show some mesh info (like the number of points, elements, faces, etc.). To see the mesh easier, hide the model temporarily.</p>
 
 <figure>
   <img class="svImg svImgXl" src="documentation/meshing/img/tetgen/tetgenisomesh.png">
@@ -283,6 +283,12 @@ Click "Yes" to continue
 </figure>
 
 <p>Now try to change the &ldquo;Global Max Edge Size&rdquo; value to generate a mesh with more elements. Note that as you specify lower global max edge size values, SimVasxcular will take longer to generate the mesh. The software might appear as not responding, but should still be working. </p>
+
+<p><font color="red"><strong>HELPFUL HINT:</strong> </font> There is an option for faster meshing, to use it:</p>
+<pre class="highlight plaintext"><code>Toggle on "Fast Meshing"
+</code></pre>
+
+<p>It speeds up meshing with the same wall mesh, while cap mesh may not be desirable sometimes. Fast Meshing is automatically disabled if you turn on &ldquo;Boundary Layer Meshing&rdquo; or &ldquo;Radius-Based Meshing&rdquo;.</p>
 </section>
 <section id="tetgenboundarylayer" class="group"><h2>Boundary Layer Meshing</h2>
 
@@ -309,6 +315,8 @@ Click the button "Run Mesher"
   <figcaption class="svCaption" ></figcaption>
 </figure>
 
+<p><font color="red"><strong>WARNNING:</strong> </font> Fast Meshing is automatically disabled if using boundary layer meshing. </p>
+
 <p>The mesh generated will have the boundary layer mesh on the specified region. Zooming in, you can see that the number of layers in the volumetric mesh is four. The boundary layer extends all the way down the length of the surface named wall, and each layer is 0.8 of the previous layer.</p>
 
 <p>It is important to note, once again, that you have generated a volumetric mesh. That is, the entire volume of the geometry has been filled with tetrahedral elements. Thus, the boundary layer meshing pattern that you see on the surface continues up the entire volume of the aorta. It is difficult to visualize thousands of elements at one time, so we only visualize this refinement on the exterior surface mesh.</p>
@@ -319,6 +327,8 @@ Click the button "Run Mesher"
 <pre class="highlight plaintext"><code>Toggle on the checkbox "Radius-Based Meshing".
 Click the button "Run Mesher".
 </code></pre>
+
+<p><font color="red"><strong>WARNNING:</strong> </font> Fast Meshing is automatically disabled if using radius based meshing. </p>
 
 <p>Note that a majority of our model has vessels of very similar size. In this case, a radius-based mesh does not do much; however, there are other models where this is a very desirable feature. The operation takes a bit long, so you can also try to change local meshing size introduced in the following section to reach the same goal. If you don&rsquo;t use this operation, remember to turn it off before runing mesher.</p>
 </section>

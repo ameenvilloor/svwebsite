@@ -198,7 +198,7 @@
 
 <p><strong>SV Simulation</strong> tool can solve the three-dimensional incompressible Navier-Stokes equations in an arbitrary domain, generally a vascular model reconstructed from image data. This is a complex subject with extensive underlying theory, and therefore this document will focus mainly on the practical aspects of simulation and analysis. </p>
 
-<p><strong>Notice</strong>: To get full functions from the Simulation tool, you need to make sure SimVascular <strong>Presolver (svPre), Flowsolver (svSolver), Postsolver (svPost)</strong> are available to the tool in your computer. Without them, you still can use the Simulation tool, but it can only create mesh files and input files, not data files for flowsolver. If the solvers are not included with your SimVascualr, refer to <a href="#solverconfiguration">Solver Configuration</a>.</p>
+<p><strong>Notice</strong>: To get full functions from the Simulation tool, it uses three solvers: <strong>Presolver (svPre), Flowsolver (svSolver), Postsolver (svPost)</strong>. Normally, SimVascular already includes the solvers and can find them automatically. User don&rsquo;t need to set up the solvers. However, in case SimVascular can&rsquo;t find them while users are using the Simulation tool, refer to <a href="#solverconfiguration">Solver Configuration</a>.</p>
 
 <p>The <strong>svSolver</strong> evolved from the academic finite element code PHASTA (Parallel, Hierarchical, Adaptive, Stabilized, Transient Analysis), developed mainly at RPI (Rensselaer Polytechnic Institute, Troy, NY) by Professor Kenneth Jansen. This code was in turned inspired by the Stabilized Finite Element theory developed by Professor Thomas J.R. Hughes during his Stanford years.</p>
 
@@ -685,8 +685,6 @@ restart.0.1 =&gt; restart.0.1 , restart.0.2 , restart.0.3 , restart.0.4
 <pre class="highlight plaintext"><code>restart.n.1 , restart.n.2 , restart.n.3 , restart.n.4 , ...
 </code></pre>
 
-<p>If the solvers are not included with your SimVascualr, refer to <a href="#solverconfiguration">Solver Configuration</a>.</p>
-
 <p><br></p>
 
 <h3>Exporting Input Files</h3>
@@ -716,7 +714,17 @@ Click the button "Export Input and Data Files..."
 Select a directory for exporting.
 </code></pre>
 
-<p>A new folder &ldquo;steady-files&rdquo; is created, which includes the following folder/files:</p>
+<p>A dialog pops up, indicating that it&rsquo;s processing data.</p>
+
+<figure>
+  <img class="svImg scImgMd" src="documentation/flowsolver/imgs/abortdialog.png">
+  <figcaption class="svCaption" ></figcaption>
+</figure>
+<pre class="highlight plaintext"><code>Click "Ok" to let it continue in background (no way to terminate it afterwards).
+Click "Abort" to terminate it.
+</code></pre>
+
+<p>After the process is finished, a new folder &ldquo;steady-files&rdquo; is created, which includes the following folder/files:</p>
 <pre class="highlight plaintext"><code>For presolver:  
     mesh-complete (folder)
     inflow.flow
@@ -766,7 +774,21 @@ restart.0.1 =&gt; restart.0.1, restart.0.2, ..., restart.0.8
 
 <p>At the same time, the solver copies all these files to a newly created folder called <strong>8-procs_case/</strong> under the project folder, and this is where all the output files of the analysis will be written to. In general, if you launch a <strong>n</strong> processor job, all the files will be copied to a <strong>n-procs_case/</strong> folder.</p>
 
-<p>You can check the simulation progress by open the file &ldquo;histor.dat&rdquo; in the folder &ldquo;8-procs_case&rdquo;. It contains containing details that allows to evaluate how well your numerical simulation is doing. Here’s a brief description of what each of those columns means.</p>
+<p>During the job running, the progress of simualtion is shown at &ldquo;Job Status&rdquo; and the status bar at the the bottom of the main window:</p>
+
+<figure>
+  <img class="svImg scImgMd" src="documentation/flowsolver/imgs/simulationstatus.png">
+  <figcaption class="svCaption" ></figcaption>
+</figure>
+
+<p>It shows the name of th running job, the percentage completed, and more info: [current time step] [time used(s)] [nonlinear residual] [logarithm of the redisual change] &hellip;</p>
+
+<p>During the job running, you can terminate it before it finishes. To stop the simulation:</p>
+<pre class="highlight plaintext"><code>Right click the job data node "steady" at Data Manager
+Click "Stop Simulation" in the popup menu   
+</code></pre>
+
+<p>After the simulation is finished. A dialog pops up to inform that the job is done. You can click the button &ldquo;Show Details&hellip;&rdquo; to get more info about the simulation progress. You can also check the simulation progress by open the file &ldquo;histor.dat&rdquo; in the folder &ldquo;8-procs_case&rdquo;. It contains containing details that allows to evaluate how well your numerical simulation is doing. Here’s a brief description of what each of those columns means.</p>
 
 <table class='table borderless' id="solverTable">
 <thead>
@@ -1332,15 +1354,15 @@ Click the button "Create Input and Data Files in Job"
 </section>
     <section id="solverconfiguration" class="subgroup"><h3>Configurating Solvers</h3>
 
-<p>SimVascular solvers(presolver, flowsolver, postsolver) are used as individual executable programs. They are called by SV Simulation tool to create data files, run simulation, and convert results to files in VTK formats. If those solvers are not included in your SimVascular package while you already have those solvers in your computer, we can tell SimVascular where to find them and how to use them.</p>
+<p>SimVascular solvers(presolver, flowsolver, postsolver) are used as individual executable programs. They are called by SV Simulation tool to create data files, run simulation, and convert results to files in VTK formats. Normally those solvers are included in SimVascular. In case your SimVascular doesn&rsquo;t include the solvers or can&rsquo;t find them, or you want to use different solvers, you need to explicitly tell SimVascular where to find or how to use them.</p>
 <pre class="highlight plaintext"><code>Goto Menu: Preferences -&gt; SimVascular Simulation
-Use MPI:  whether to use mpi to run flowsolver. It depends on if your flowsolver supports MPI. If you wan to use MPI, make sure it's installed.
-MPIEXEC: mpiexec (by default). You may need to provide the full path and file name for the file if it's not added to system searching paths.
-Use Solver Input Custom Template: whether to use a custom tempalte file for the table of "Solver Parameters". Only for advanced users
+Use MPI:  whether to use mpi to run flowsolver. It depends on if your flowsolver supports MPI. By default, we assume using MPI.
+MPIExec: (mpiexec, by default) It's opional. Specify the full path and file name for the mpiexec to use.
+Use Solver Input Custom Template: whether to use a custom tempalte file for the table of "Solver Parameters". Only for advanced users.
 Custom Tempalte: the full path and file name for your custom template file.
-External Presolver: provide the full path and file name for presolver if you want to use a specified one
-External Flowsolver: provide the full path and file name for flowsolver if you want to use a specified one
-External Postsolver: provide the full path and file name for postsolver if you want to use a specified one
+Presolver: Specify the full path and file name for the presolver to use.
+Flowsolver: Specify the full path and file name for the flowsolver to use.
+Postsolver: Specify the full path and file name for the postsolver to use.
 </code></pre>
 
 <figure>
@@ -1348,19 +1370,41 @@ External Postsolver: provide the full path and file name for postsolver if you w
   <figcaption class="svCaption" ></figcaption>
 </figure>
 
-<h4>MPI Installation</h4>
+<h4>Availability of Solvers and MPI</h4>
 
 <p><strong>Linux:</strong></p>
+<pre class="highlight plaintext"><code>Solvers are included in SimVascular. Simulation tool should be able to find them.
+If it couldn't find them, configure them in terms to the instrcutions above.
+Those solvers are located at [SimVascular_Home_Dir]/Bin/
+Presolver: [SimVascular_Home_Dir]/Bin/svpre
+Flowsolve: [SimVascular_Home_Dir]/Bin/svsolver
+Postsolver: [SimVascular_Home_Dir]/Bin/svpost
+</code></pre>
+
+<p>In case you can&rsquo;t run mpiexec when using flowsolver, please make sure mpi is installed.</p>
+
+<p>To install MPI:</p>
 <pre class="highlight plaintext"><code>sudo apt-get install libmpich2-dev
 </code></pre>
 
 <p><strong>Mac OS X</strong></p>
-<pre class="highlight plaintext"><code>Install MacPorts, which you can download at macports.org
-sudo port install mpich-gcc46
+<pre class="highlight plaintext"><code>Solvers and mpiexec are included in SimVascular. Simulation tool should be able to find them.
+If it couldn't find them, configure them in terms to the instrcutions above.
+Those solvers and mpiexec are located at /Applications/SimVascular.app/Contents/Resources/
+MPIExec: /Applications/SimVascular.app/Contents/Resources/mpiexec 
+Presolver: /Applications/SimVascular.app/Contents/Resources/svpre
+Flowsolve: /Applications/SimVascular.app/Contents/Resources/svsolver
+Postsolver: /Applications/SimVascular.app/Contents/Resources/svpost
 </code></pre>
 
 <p><strong>Windows</strong></p>
-<pre class="highlight plaintext"><code>Install Microsoft MPI (MS-MPI)
+<pre class="highlight plaintext"><code>There is a separate installer for svsolvers at simtk.org.
+Download and install svsolver-xxxx.exe (including MPI installer)
+Simulation tool should be able to find them. If it couldn't find them, configure them in terms to the instrcutions above.
+The solvers are located at C:\Program Files (x86)\SimVascular\svSolver\Release\xxxxxxxxxx\
+Presolver: C:\Program Files (x86)\SimVascular\svSolver\Release\xxxxxxxxxx\svpre-bin.exe
+Flowsolver: C:\Program Files (x86)\SimVascular\svSolver\Release\xxxxxxxxxx\svsolver-msmpi-bin.exe
+Postsolver: C:\Program Files (x86)\SimVascular\svSolver\Release\xxxxxxxxxx\svpost-bin.exe
 </code></pre>
 </section>
     <section id="presolvercommands" class="subgroup"><h3>svPre Commands</h3>

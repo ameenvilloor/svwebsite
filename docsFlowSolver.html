@@ -449,7 +449,7 @@ $$</p>
 </section>
     <section id="creatingjob" class="group"><h2>Creating a Job for Simulation</h2>
 
-<p>Let&rsquo;s try Example 1. The files for Example 1 can be found <a href="/documentation/flowsolver/files/example.zip">here</a>. Download and open the project. Now we assume you alread have the model and mesh for it.</p>
+<p>Let&rsquo;s try Example 1. The files for Example 1 can be found from the link on the left &ldquo;Cylinder Example&rdquo;. Download and open the project. Now we assume you alread have the model and mesh for it.</p>
 
 <p><strong>To create a simulation job (empty):</strong></p>
 <pre class="highlight plaintext"><code>Right click the data node "Simulations" in the SV project in Data Manager
@@ -1384,7 +1384,11 @@ Postsolver: [SimVascular_Home_Dir]/Bin/svpost
 <p>In case you can&rsquo;t run mpiexec when using flowsolver, please make sure mpi is installed.</p>
 
 <p>To install MPI:</p>
-<pre class="highlight plaintext"><code>sudo apt-get install libmpich2-dev
+<pre class="highlight plaintext"><code>For Ubuntu 14:
+sudo apt-get install libmpich2-dev
+
+For Ubuntu 16:
+sudo apt-get install libmpich-dev
 </code></pre>
 
 <p><strong>Mac OS X</strong></p>

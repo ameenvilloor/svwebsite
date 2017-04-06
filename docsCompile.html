@@ -14,7 +14,7 @@
 
     <link href="css/shop-item.css" rel="stylesheet" type="text/css" />
 
-    <link href="css/codestyle.css" rel="stylesheet" type="text/css" />    
+    <link href="css/codestyle.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="font-awesome-4.1.0/css/font-awesome.min.css">
 
@@ -42,12 +42,12 @@
                 <a class="navbar-brand" id="brandName" href="index.html">
                   <img src="img/svlogo/svLogoSmallText.png" alt="...">
                 </a>
-                <a class="navbar-brand page-scroll">            
+                <a class="navbar-brand page-scroll">
                 3.0
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">            
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
 
                   <!-- USER GUIDES -->
@@ -65,7 +65,7 @@
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="docsFlowSolver.html"><b><span class="icon ion-play"></span> Simulation</b></a></li>
                     </ul>
                   </li>
-                  
+
                   <!-- CLINCAL CASES -->
                   <li>
                     <a href="#" id="dropdownMenu1" data-toggle="dropdown">
@@ -88,7 +88,7 @@
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="docsCompile.html"><b><span class="fa fa-file-text-o"></span> Compile Sources</b></a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="docsCodeSnippets.html"><b><span class="fa fa-indent"></span> Code Snippets</b></a></li>
                     </ul>
-                  </li>                  
+                  </li>
 
                   <!-- svCOMMUNITY -->
                   <li>
@@ -96,10 +96,10 @@
                       <b><i class="fa fa-users"></i> svCommunity</b>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="https://simtk.org/forums/viewforum.php?f=188"><b><span class="fa fa-users"></span> Public Forum</b></a></li>                                          
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="https://simtk.org/forums/viewforum.php?f=188"><b><span class="fa fa-users"></span> Public Forum</b></a></li>
                       <li role="presentation" class="divider"></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="https://simtk.org/mailman/listinfo/simvascular-users"><b><span class="fa fa-sign-in"></span> Join User Mailing List</b></a></li>                      
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="https://simtk.org/pipermail/simvascular-users/"><b><span class="fa fa-pencil-square-o"></span> User Mailing List Archive</b></a></li>                      
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="https://simtk.org/mailman/listinfo/simvascular-users"><b><span class="fa fa-sign-in"></span> Join User Mailing List</b></a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="https://simtk.org/pipermail/simvascular-users/"><b><span class="fa fa-pencil-square-o"></span> User Mailing List Archive</b></a></li>
                     </ul>
                   </li>
 
@@ -108,11 +108,11 @@
                     <a href="docsRefs.html" id="dropdownMenu1" >
                       <b><span class="icon ion-document-text"></span>References</b>
                     </a>
-                  </li>  
+                  </li>
 
                     <!-- <li><a href="docsQuickGuide.html" id="btnQuickGuide"><b><span class="icon ion-ios7-bolt"></span> Quick Guide</b></a></li>
-                    <li><a href="docsModelGuide.html" id="btnModelGuide"><b><span class="icon ion-settings"></span> Modeling</b></a></li> 
-                    
+                    <li><a href="docsModelGuide.html" id="btnModelGuide"><b><span class="icon ion-settings"></span> Modeling</b></a></li>
+
                     <li><a href="docsMeshing.html" id="btnMeshing"><b><span class="icon ion-ios7-keypad"></span> Meshing</b></a></li>
                     <li><a href="docsPresolver.html" id="btnPresolver"><b><span class="icon ion-log-in"></span> svPre</b></a></li>
                     <li><a href="docsFlowSolver.html" id="btnFlowSolver"><b><span class="icon ion-play"></span> svSolver</b></a></li>
@@ -153,9 +153,9 @@
 
 
 
-        
+
     </nav>
-    
+
     <!--Main Content -->
     <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9" id="manualContent">
 
@@ -236,7 +236,7 @@ Compilers currently supported:
 
 - gcc/g++/gfortran version 4.6.3 (others will most likely work too)
 - ifort/icpc/icc intel compilers verison 13.0 (2013.1.117)
-    
+
 #### Microsoft Windows
 - Windows 7 and Windows 8
 - C++ (required) fortran (optional) compilers
@@ -262,14 +262,50 @@ Compilers currently supported:
 - MacPorts with gcc (4.6.4)
 
 Use `gcc version` to see which compiler you are using.
-    
+
 *Clang 5.0+ is*  **not** *supported* -->
 </section>
+<section id="buildInfo" class="subgroup"><h2>Building Help</h2>
+  <p>Building SimVascular can be thought of as building two separate projects:
+    <li>SimVascular's externals</li>
+    <li>SimVascular itself</li>
+  </p>
+  SimVascular Source:
+		<p>
+		 <pre class="highlight plaintext">
+<code>--- CMakeLists.txt - <ul><em>Highest level CMake file that contains very little. Simply builds the Externals project and then the SimVascular project. Should be the entrance location for anyone familiarizing themselves with SimVascular.</em></ul>
+<font color="##0000FF">Externals</font>
+<ul>--- CMakeLists.txt - <ul><em>Main CMake file for Externals. Very involved and contains options to use different versions of the externals, to build or download certain externals, etc. Many of these options are not available using the highest level CMake file, so if fine tuning of the Externals is desired, this is the spot to be :)</em></ul></ul>
+<font color="##0000FF">Code</font>
+<ul>--- CMakeLists.txt - <ul><em>Main CMake file for SimVascular. Very involved and contains options for building/not building certain libraries, shared/static libraries, etc. Many of these options are also not available using the highest level CMake file, so if fine tuning of the SimVascular build is desirec, this is the spot to be :)</em></ul></ul>
+<font color="##0000FF">... Remaining Src</font></code></pre>
+		</p>
+  <p>
+   <h4>Building it all</h4>
+   <p>This is the easiest and most basic way to build SimVascular. If using a supported operating system and compiler, this is likely to work
+   <h4>Building the externals</h4>
+   SimVascular depends directly on 7 major open source libraries:
+   <ol>
+     <li><a href="https://www.tcl.tk">Tcl/Tk</a></li>
+     <li><a href="https://www.python.org">Python</a></li>
+     <li><a href="https://www.freetype.org">FreeType</a></li>
+     <li><a href="http://gdcm.sourceforge.net/wiki/index.php/Main_Page">GDCM</a></li>
+     <li><a href="https://itk.org">ITK</a></li>
+     <li><a href="http://www.vtk.org">VTK</a></li>
+     <li><a href="https://www.mmgtools.org">MMG</a></li>
+     <li><a href="https://www.opencascade.com">OpenCASCADE</a></li>
+     <li><a href="http://mitk.org/wiki/MITK">MITK</a></li>
+   </ol>
+   Building all of these dependencies can take quite a while; thus, pre-built
+   binaries are provided for the supported operating systems. We will discuss how to
+   to build these in section TODO FILLL.
+  </p>
+</section><!-- end buildInfo -->
 <section id="reqLibWin" class="subgroup"><h2>Required Libraries</h2>
 
 <h3>Windows</h3>
 
-<p>You need to install: 
+<p>You need to install:
 <ul>
 <li>CMake, Visit <a href="http://www.cmake.org/"target="_blank"> cmake.org</a> for details</li>
 <li><a href="http://www.visualstudio.com/"target="_blank"> Microsoft Visual Studio</a> (with x64 compilers)</li>
@@ -338,37 +374,6 @@ sudo apt-get install libgdcm-tools
 <pre class="highlight plaintext"><code>sudo apt-get install glib2.0-dev
 </code></pre>
 </section>
-<section id="compileBuild" class="group"><h2>Steps for compiling</h2>
-
-<p>By default SimVascular will build using a superbuild mode that downloads and
-configures many of the libraries automatically.  If you wish to perform this
-step manually, turn off SimVascular_SUPERBUILD from the CMake menu.</p>
-
-<ul>
-<li><p>Open CMake and point the source directory to [simvascular source]/Code.  Then set the Build directory to any location not in your simvascular source directory. <em>In source builds are not supported at this time.</em> For example:</p>
-<pre class="highlight plaintext"><code>Source: /home/[username]/SimVascular/Code
-Build: /home/[username]/SimVascularBin
-</code></pre></li>
-</ul>
-
-<p><strong>Note to Windows Users:</strong> <em>There is a bug in MSVC10 that causes errors if the compile paths are too long,  It is reccomended that you place your source directoy so that the path to it is short (C:/Code/SimVascular is known to work).</em></p>
-
-<ul>
-<li>Select your desired options in the GUI, hit configure. Continue to hit configure till no options change (or in curses-gui continue till the generate option apears.  Once configured, hit generate.<br></li>
-</ul>
-
-<p>Now you can compile the project using whichever generator you specificed to 
-CMake (i.e. make or MSVC build all).  Alternatively, you may use CMake to call 
-the command for you.</p>
-
-<p>On Mac and Linux for example use make. Navigate to build directory in terminal and type <code>make</code></p>
-
-<p>For Windows build in Visual Studio</p>
-
-<p>On all systems (from the command prompt or terminal) this command is: </p>
-<pre class="highlight plaintext"><code>cmake --build /path/to/build-directory --config RelWithDebInfo
-</code></pre>
-</section>
 <section id="compileRun" class="group"><h2>Running SimVascular</h2>
 
 <p>To run SimVascular and other executables you need to run these scripts which will set up the environmnet variables and start the executable. These scripts should be run from the top level of the build directory:</p>
@@ -412,9 +417,9 @@ the command for you.</p>
 
 <h4>VTK</h4>
 
-<p>On some systems particular verisions of vtk\itk with the needed settings 
-will not build correctly with gcc4.4 or gcc4.8. It is reccomended that 
-you obtain and install gcc-4.6.  There is a helpful guide in this readme 
+<p>On some systems particular verisions of vtk\itk with the needed settings
+will not build correctly with gcc4.4 or gcc4.8. It is reccomended that
+you obtain and install gcc-4.6.  There is a helpful guide in this readme
 to get you started.</p>
 
 <p>You may get these from source or use the SV<em>thirdparty</em>svn</p>
@@ -451,35 +456,35 @@ to get you started.</p>
 
 <h2>Linux: Multiple Compilers</h2>
 
-<p>Some versions of the needed software do not compile correctly using certain 
+<p>Some versions of the needed software do not compile correctly using certain
 versions of gcc/g++.  We use gcc-4.6 to compile many of the external libraries.
-It is easy to obtain gcc-4.6 without overwriting your current version using 
-update-alternatives.  Below is an example of how to install both gcc-4.6 and 
+It is easy to obtain gcc-4.6 without overwriting your current version using
+update-alternatives.  Below is an example of how to install both gcc-4.6 and
 gcc-4.8 on a ubuntu system.</p>
-<pre class="highlight shell"><code>apt-get install c++-4.6 c++-4.8 
+<pre class="highlight shell"><code>apt-get install c++-4.6 c++-4.8
 
-update-alternatives --remove-all gcc 
-update-alternatives --remove-all g++ 
+update-alternatives --remove-all gcc
+update-alternatives --remove-all g++
 
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 10 
-update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20 
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 10
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 20
 
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 10 
-update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20 
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 10
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
 
-update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30 
-update-alternatives --set cc /usr/bin/gcc 
+update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30
+update-alternatives --set cc /usr/bin/gcc
 
-update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30 
-update-alternatives --set c++ /usr/bin/g++ 
+update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30
+update-alternatives --set c++ /usr/bin/g++
 
-update-alternatives --config gcc 
+update-alternatives --config gcc
 update-alternatives --config g++
 </code></pre>
 
 <h2>OS X: Installing MacPorts, gcc46, MPI</h2>
 
-<p>If you get the Macports versions of GNU compilers you&rsquo;ll need the matching 
+<p>If you get the Macports versions of GNU compilers you&rsquo;ll need the matching
 MPI installation.</p>
 
 <p>Install macports from <a href="https://www.macports.org/"target="blank"> macports.org</a></p>
@@ -501,20 +506,20 @@ sudo port install mpich-gcc46
 
 
     </div>
-</div>    
+</div>
 
 
     <!-- /.container -->
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid text-center">
           <ul class="nav navbar-nav">
-            <li><a>Copyright &copy; SimVascular Development Team - 2017</a></li>                
+            <li><a>Copyright &copy; SimVascular Development Team - 2017</a></li>
           </ul>
         </div>
         <!-- /.container -->
     </nav>
 
-    
+
     <script src="js/jquery-1.11.0.js" type="text/javascript"></script><script src="js/bootstrap.min.js" type="text/javascript"></script>
 
     <script type="text/x-mathjax-config">

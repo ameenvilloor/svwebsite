@@ -137,11 +137,11 @@
         <ul id="sidebar" class="nav nav-stacked fixed manSource"> <!--Nav Bar -->
 <p><h3>Compile</h3></p>
 <li><a href="#compileRequirements">System Requirements</a></li>
-<li><a href="#reqLibWin">Required Libraries</a>
+<li><a href="#sysSetupWin">Required Libraries</a>
 	<ul class="nav nav-stacked">
-		<li><a href="#reqLibWin">Windows</a></li>
-		<li><a href="#reqLibMac">Apple OS X</a></li>
-		<li><a href="#reqLibLinux">Linux</a></li>
+		<li><a href="#sysSetupWin">Windows</a></li>
+		<li><a href="#sysSetupMac">Apple OS X</a></li>
+		<li><a href="#sysSetupLinux">Linux</a></li>
 	</ul>
 <li><a href="#compileBuild">Steps for Compiling</a>
 <li><a href="#compileRun">Running Simvascular</a>
@@ -182,88 +182,44 @@
 <tr>
   <td>Tested Configurations:
         <ul>
-          <li>Windows 7 and Windows 8</li>
-          <li>C++ (required) fortran (optional) compilers</li>
+          <li>Windows 10</li>
+          <li>C++ compilers</li>
         </ul>
     Supported Compilers:
       <ul>
-      <li>Visual Studio 2010 Service Pack 1 (for x64)</li>
-      <li>Intel Visual Fortran Fortran compiler (ifort)</li>
+      <li>Visual Studio 2013 Community Edition <br>(version 12.0 update 5 for x64)</li>
+      <li>Visual Studio 2013 Professional <br>(version 12.0 update 5 for x64)</li>
     </ul>
   </td>
   <td>Tested Configurations:
         <ul>
-          <li>Version 10.8.5 (Mountain Lion) and 10.9 (Mavericks)</li>
-          <li>XCode 4.6 or 5.0 (with 4.6.3 previously installed)</li>
+          <li>Version 10.10.5 (OS X Yosemite) <br>with XCode 7.2.1 (command line tools installed)</li>
+          <li>Version 10.12.1 (macOS Sierra) <br>with XCode 8.2.1 (command line tools installed)</li>
         </ul>
     Supported Compilers:
       <ul>
-      <li>i686-apple-darwin11-gcc-4.2.1 (GCC) 4.2.1 (Apple Inc. build 5666)</li>
-      <li>MacPorts with gcc (4.6.4)</li>
-      <li>Clang 6.0 (experimental)</li>
+      <li>Apple LLVM version 7.0.2 (clang-700.1.81)</li>
+      <li>Apple LLVM version 8.0.0 (clang-800.0.42.1)</li>
     </ul>
   </td>
   <td>Tested Configurations:
         <ul>
-          <li>Ubuntu 13.04 64-bit desktop (w/ patches)</li>
-          <li>Intel processor</li>
-          <li>C++ (required) fortran (optional) compilers</li>
+          <li>Ubuntu 14.04 64-bit desktop</li>
+          <li>Ubuntu 16.04 64-bit desktop</li>
         </ul>
     Supported Compilers:
       <ul>
-      <li>gcc/g++/gfortran version 4.6.3 (others will most likely work too)</li>
-      <li>ifort/icpc/icc intel compilers verison 13.0 (2013.1.117)</li>
+      <li>gcc/g++ 4.8.5</li>
+      <li>gcc/g++ 5.4.0</li>
     </ul>
   </td>
 </tr>
 </table>
 
-<p><em>Use <code>gcc --version</code> to see which compiler you are using.</em></p>
-
-<p><em>We currently <strong>only support MS Visual Stuidio 2010</strong>, later versions are <strong>not</strong> supported at this time. MinGW gfortran is not supported but we plan to add this functionality in future releases.</em></p>
+<p><em>On linux, use <code>gcc --version</code> to see which compiler you are using.</em></p>
+<p><em>On mac, use <code>clang --version</code> to see which compiler you are using.</em></p>
 
 <p><em>XCode&rsquo;s tools and libraries are required but compiling with XCode is currently <strong>unsupported.</strong></em></p>
-
-<p><em>Clang 5.0+ is</em>  <strong>not</strong> <em>supported</em>, we are working on supporting this in the near future.</p>
-
-<!-- #### Linux
-- Ubuntu 13.04 64-bit desktop (w/ patches)
-- Intel processor
-- C++ (required) fortran (optional) compilers
-
-
-Compilers currently supported:
-
-- gcc/g++/gfortran version 4.6.3 (others will most likely work too)
-- ifort/icpc/icc intel compilers verison 13.0 (2013.1.117)
-
-#### Microsoft Windows
-- Windows 7 and Windows 8
-- C++ (required) fortran (optional) compilers
-
-
-Compiler environments currently supported:
-
-- Visual Studio 2010 Service Pack 1 (for x64)
-- Intel Visual Fortran Fortran compiler (ifort)
-
-*We currently __only support MS Visual Stuidio 2010__, later versions are __not__ supported at this time. MinGW gfortran is not supported but we plan to add this functionality in future releases.*
-
-#### Apple OS X
-- Version 10.8.5 (Mountain Lion) and 10.9 (Mavericks)
-- XCode 4.6 or 5.0 (with 4.6.3 previously installed)
-
-*XCode's tools and libraries are required but compiling with XCode is currently __unsupported.__*
-
-
-Compilers currently supported:
-
-- i686-apple-darwin11-gcc-4.2.1 (GCC) 4.2.1 (Apple Inc. build 5666)
-- MacPorts with gcc (4.6.4)
-
-Use `gcc version` to see which compiler you are using.
-
-*Clang 5.0+ is*  **not** *supported* -->
 </section>
 <section id="buildInfo" class="subgroup"><h2>Building Help</h2>
   <p>Building SimVascular can be thought of as building two separate projects:
@@ -281,9 +237,31 @@ Use `gcc version` to see which compiler you are using.
 <font color="##0000FF">... Remaining Src</font></code></pre>
 		</p>
   <p>
-   <h4>Building it all</h4>
-   <p>This is the easiest and most basic way to build SimVascular. If using a supported operating system and compiler, this is likely to work
-   <h4>Building the externals</h4>
+   <h3>Building it all</h3>
+   <p>This is the easiest and most basic way to build SimVascular. If using a supported operating system and compiler, this is likely to work.
+     <li>Follow the setup instructions for <a href="#sysSetupMac">Mac</a>, <a href="#sysSetupLinux">Linux</a>, or <a href="#sysSetupWin">Windows</a>.</li>
+     <li>Use git to clone the SimVascular source:</li>
+     <pre class="highlight plaintext"><code>git clone https://github.com/SimVascular/SimVascular.git SimVascularSrc</code></pre>
+     <li>Or fork the project on <a href="https://github.com/SimVascular/SimVascular">github</a>, and then clone the forked repository:</li>
+     <pre class="highlight plaintext"><code>git clone https://github.com/github_username/SimVascular.git SimVascularSrc</code></pre>
+     <li>Enter the source and setup the project:</li>
+     <pre class="highlight plaintext"><code>cd SimVascularSrc
+mkdir Build
+ccmake ..</code></pre>
+     <li>Configure the project with 'c'. This will error because it needs Qt. Point it to the location of the Qt5Config.cmake file:</li>
+     <pre class="highlight plaintext"><code><img src="img/svlogo/svLogoSmallText.png" alt="..."></code></pre>
+     <li>Reconfigure the project with 'c' until you can generate make files with 'g'. If you see warnings, please read them. It may be the case that your system does not have pre-built binaries of the externals. In which case, a default version of the pre-built externals will be download; however, it could cause errors when finally building the SimVascular project.</li>
+     <li>If you have no errors, generate the make files with 'g'.</li>
+     <li>Build the project:</li>
+     <pre class="highlight plaintext"><code>make</code></pre>
+     <li>First, the externals will be downloaded and then SimVascular will be automatically configured to build with these pre-built downloaded externals.</li>
+     <li>If the build errors during the download of the externals, see the section about the <a href="#buildExternals">Externals</a>. If the build errors durign the actual build SimVascular, see the section about building <a href="#buildSimVascular">standalone SimVascular</a></li>
+     <li>If the build did not error, navigate to the SimVascular build directory and launch the project!</li>
+     <pre class="highlight plaintext"><code>cd SimVascular-build
+./mysim -qt</code></pre>
+   </p>
+   <p>
+   <h3 id="buildExternals">Building SimVascular's Externals</h3>
    SimVascular depends directly on 7 major open source libraries:
    <ol>
      <li><a href="https://www.tcl.tk">Tcl/Tk</a></li>
@@ -299,9 +277,12 @@ Use `gcc version` to see which compiler you are using.
    Building all of these dependencies can take quite a while; thus, pre-built
    binaries are provided for the supported operating systems. We will discuss how to
    to build these in section TODO FILLL.
-  </p>
+   </p>
+   <p>
+   <h3 id="buildSimVascular">Building Standalone SimVascular</h3>
+   </p>
 </section><!-- end buildInfo -->
-<section id="reqLibWin" class="subgroup"><h2>Required Libraries</h2>
+<section id="sysSetupWin" class="subgroup"><h2>System Setup</h2>
 
 <h3>Windows</h3>
 
@@ -309,15 +290,15 @@ Use `gcc version` to see which compiler you are using.
 <ul>
 <li>CMake, Visit <a href="http://www.cmake.org/"target="_blank"> cmake.org</a> for details</li>
 <li><a href="http://www.visualstudio.com/"target="_blank"> Microsoft Visual Studio</a> (with x64 compilers)</li>
-<li><a href="https://software.intel.com/en-us/fortran-compilers"target="_blank"> Intel Visual Fortran</a></li>
-<li>MPICH2, available at: mpich2-1.4.1p1-win-x86-64.msi</li>
 </ul></p>
 </section>
-<section id="reqLibMac" class="subgroup"><h3>Apple OS X</h3>
+<section id="sysSetupMac" class="subgroup"><h3>Apple OS X</h3>
 
 <p>To install CMake on OS X visit <a href="http://www.cmake.org/"target="blank"> cmake.org</a> for details</p>
+<p>Make sure you have XCode XCODEEEEE TODODOD</p>
+<p>Install Qt QTTTT TODOOO</p>
 
-<p>If you have Clang 6.0, you will also need to install MacPorts, which you can download at <a href="https://www.macports.org/"target="blank"> macports.org</a>
+
 <br></p>
 
 <p>The Xcode comman line tools need to be installed. This can done with this command:</p>
@@ -340,7 +321,7 @@ sudo port install mpich-gcc46
 sudo port install pkgconfig
 </code></pre>
 </section>
-<section id="reqLibLinux" class="subgroup"><h3>Linux</h3>
+<section id="sysSetupLinux" class="subgroup"><h3>Linux</h3>
 
 <p>You will need the following packages, available from the APT repository:</p>
 <pre class="highlight plaintext"><code>sudo apt-get install cmake
